@@ -4,7 +4,7 @@ import copy
 import motmetrics as mm
 mm.lap.default_solver = 'lap'
 
-from libs.mota.io import read_results, unzip_objs
+from .io import read_results, unzip_objs
 
 
 class ECCV_Evaluator(object):

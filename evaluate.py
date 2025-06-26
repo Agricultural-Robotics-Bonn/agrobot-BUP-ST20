@@ -14,11 +14,12 @@ import motmetrics as mm
 import numpy as np
 import os
 
-from engine.evaluation.libs.utils import get_unique_frames
-from engine.evaluation.libs.mota.evaluation import ECCV_Evaluator
-import engine.evaluation.libs.hota.ECCVeval as ome
-import engine.evaluation.libs.hota.datasets as omd
-import engine.evaluation.libs.hota.metrics as omm
+from engine.evaluation.utils import get_unique_frames
+from engine.evaluation.mota.evaluation import ECCV_Evaluator
+import engine.evaluation.hota.ECCVeval as ome
+import engine.evaluation.hota.datasets as omd
+import engine.evaluation.hota.metrics as omm
+from engine.evaluation.utils import default_config
 
 # check the gt vs the preds
 def check_inputs(pt_dir, gt_dir):
@@ -41,7 +42,7 @@ def get_info(pt_dir, gt_dir):
     dit[d] = uf
   return dit
 
-def calculate_mota_etc( pt_dir, gt_dir ):
+def calculate_mota_etc(pt_dir, gt_dir):
     # for the HOTA metric
     default_eval_config = ome.Evaluator.get_default_eval_config()
     default_metrics_config = {'METRICS': ['HOTA'], 'THRESHOLD': 0.5}
@@ -49,19 +50,19 @@ def calculate_mota_etc( pt_dir, gt_dir ):
     # for the other metrics
     metrics = mm.metrics.motchallenge_metrics
     # get the gt files to evaluate against
-    dirs = sorted( os.listdir( gt_dir ) )
+    dirs = sorted(os.listdir(gt_dir))
     accs, seqn_names = [], []
     # iterate over the directories
     for d in dirs:
       # get the sequence name
-      seqn_names.append( d )
+      seqn_names.append(d)
       # get the prediction file
-      p = os.path.join( pt_dir, f'{d}.txt' )
+      p = os.path.join(pt_dir, f'{d}.txt')
       # create the evaluator for the other metrics
-      evaluator = ECCV_Evaluator( gt_dir, d, 'mot' )
-      accs.append( evaluator.eval_file( p ) )
+      evaluator = ECCV_Evaluator(gt_dir, d, 'mot')
+      accs.append(evaluator.eval_file(p))
     # calculate the other metrics
-    summary = ECCV_Evaluator.get_summary( accs, seqn_names, metrics )
+    summary = ECCV_Evaluator.get_summary(accs, seqn_names, metrics)
     mh = mm.metrics.create()
     strsummary = mm.io.render_summary(
       summary,
@@ -71,19 +72,19 @@ def calculate_mota_etc( pt_dir, gt_dir ):
     print(strsummary)
     return summary.iloc[-1]
 
-def calculate_hota( pt_dir, gt_dir, info ):
+def calculate_hota(pt_dir, gt_dir, info):
   default_config['GT_FOLDER'] = gt_dir
   default_config['TRACKERS_FOLDER'] = pt_dir
   default_config['SEQ_INFO'] = info
   default_eval_config = ome.Evaluator.get_default_eval_config()
   default_metrics_config = {'METRICS': ['HOTA'], 'THRESHOLD': 0.5}
-  metrics_list = [omm.HOTA( default_metrics_config )]
-  hota_evaluator = ome.Evaluator( default_eval_config )
-  dataset_list = [omd.ECCVChallenge2DBox( default_config )]
-  output_res, output_msg = hota_evaluator.evaluate( dataset_list, metrics_list, show_progressbar=False )
+  metrics_list = [omm.HOTA(default_metrics_config)]
+  hota_evaluator = ome.Evaluator(default_eval_config)
+  dataset_list = [omd.ECCVChallenge2DBox(default_config)]
+  output_res, output_msg = hota_evaluator.evaluate(dataset_list, metrics_list, show_progressbar=False)
   print( 'sequence, HOTA(0)')
   for k, v in output_res['ECCVChallenge2DBox'].items():
-    print( k, v['pepper']['HOTA']['HOTA(0)'] )
+    print(k, v['pepper']['HOTA']['HOTA(0)'])
   return output_res['ECCVChallenge2DBox']['COMBINED_SEQENCE']['pepper']['HOTA']['HOTA(0)']
 
 def main(pt_dir, gt_dir, res_dir, info):

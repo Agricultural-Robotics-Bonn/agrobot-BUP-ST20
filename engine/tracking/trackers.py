@@ -3,6 +3,7 @@
 """
 
 import numpy as np
+import os
 import pickle
 from skimage.io import imread
 import yaml
@@ -50,7 +51,7 @@ def create_bytetrack_txts(flags):
     with open(flags.skip_files, 'rb') as fid:
       skips = pickle.load(fid)
   # create the output directory
-  os.makedirs(flags.output_root)
+  os.makedirs(flags.output_root, exist_ok=True)
   # now do the tracking.
   for s in seqns['eval']:
     print(f'Current sequence is:{s}')
@@ -108,7 +109,7 @@ def create_ourtracker_txts(flags):
     with open(flags.skip_files, 'rb') as fid:
       skips = pickle.load(fid)
   # create the output directory
-  os.makedirs(flags.output_root)
+  os.makedirs(flags.output_root, exist_ok=True)
   # now do the tracking.
   for s in seqns['eval']:
     print(f'Current sequence is:{s}')
