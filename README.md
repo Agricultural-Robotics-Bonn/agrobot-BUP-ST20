@@ -69,6 +69,8 @@ Look in the ```run_example``` directory for examples of how to run different exp
 
 Look in the ```run_example``` directory for examples of how to run the evaluations after you have tracked the files for our tracker and bytetrack.
 
+In this directory, currently there is only the standard and random skipping examples, but, the frame drops are similar to skipping just with different hyper-parameters.
+
 ## The hyper-parameters and the repositories for the different state-of-the-art tracking techniques
 
 Please note, the code in the public repositories belongs to their owners and we only provide the links to their code.
