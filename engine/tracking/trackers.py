@@ -62,7 +62,7 @@ def create_bytetrack_txts(flags):
     else:
       files = fpseq[s]
     # create the tracker
-    tracker = Dynamic_BYTETracker(flags, get_criterion(criteria))
+    tracker = Dynamic_BYTETracker(flags, get_criterion(flags.distance_criteria))
     # go over the files in the current sequence
     for f in files:
       # read in the image and get the shape

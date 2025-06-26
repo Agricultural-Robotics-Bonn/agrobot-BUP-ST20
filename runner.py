@@ -39,7 +39,7 @@ def parser():
   parser.add_argument('--keep_running', action='store', type=int, default=10)
   parser.add_argument('--radius_ot', action='store', default='maximum') # for DR and DRE-D only: minimum (for DR) and maximum (for DRE-D)
   parser.add_argument('--delta_ot', action='store', default='maximum') # for DRE-D only: [default, maximum, summation]
-  parser.add_argument('--usechecks', action='store', default='true') 
+  parser.add_argument('--usechecks', action='store', default='true')
   parser.add_argument('--beta_ot', action='store', type=float, default=1.0) # for DRE-D only.
 
   # here are the hyper-parameters for bytetrack. Set up to be default (IoU) for the best results.

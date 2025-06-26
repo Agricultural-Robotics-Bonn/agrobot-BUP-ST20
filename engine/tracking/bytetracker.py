@@ -222,7 +222,7 @@ class Dynamic_BYTETracker(object):
         strack_pool = joint_stracks(tracked_stracks, self.lost_stracks)
         # Predict the current location with KF
         STrack.multi_predict(strack_pool)
-        dists = self.criterion(strack_pool, detections, alpha=self.args.alpha, beta=self.args.beta_bt, radius=self.args.radius_bt, delta=self.args.delta_bt)
+        dists = self.criterion(strack_pool, detections, alpha=1.0, beta=self.args.beta_bt, radius=self.args.radius_bt, delta=self.args.delta_bt)
         if not self.args.mot20:
             dists = matching.fuse_score(dists, detections)
         matches, u_track, u_detection = matching.linear_assignment(dists, thresh=self.args.match_thresh)
@@ -246,7 +246,7 @@ class Dynamic_BYTETracker(object):
         else:
             detections_second = []
         r_tracked_stracks = [strack_pool[i] for i in u_track if strack_pool[i].state == TrackState.Tracked]
-        dists = self.criterion(r_tracked_stracks, detections_second, alpha=self.args.alpha, beta=self.args.beta_bt, radius=self.args.radius_bt, delta=self.args.delta_bt)
+        dists = self.criterion(r_tracked_stracks, detections_second, alpha=1.0, beta=self.args.beta_bt, radius=self.args.radius_bt, delta=self.args.delta_bt)
         matches, u_track, u_detection_second = matching.linear_assignment(dists, thresh=self.args.match_second)
         for itracked, idet in matches:
             track = r_tracked_stracks[itracked]
@@ -266,7 +266,7 @@ class Dynamic_BYTETracker(object):
 
         '''Deal with unconfirmed tracks, usually tracks with only one beginning frame'''
         detections = [detections[i] for i in u_detection]
-        dists = self.criterion(unconfirmed, detections, alpha=self.args.alpha, beta=self.args.beta_bt, radius=self.args.radius_bt, delta=self.args.delta_bt)
+        dists = self.criterion(unconfirmed, detections, alpha=1.0, beta=self.args.beta_bt, radius=self.args.radius_bt, delta=self.args.delta_bt)
         if not self.args.mot20:
             dists = matching.fuse_score(dists, detections)
         matches, u_unconfirmed, u_detection = matching.linear_assignment(dists, thresh=self.args.match_unconfirmed)
