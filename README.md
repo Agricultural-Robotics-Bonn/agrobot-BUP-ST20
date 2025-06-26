@@ -29,7 +29,7 @@ To deactivate
 
 ```deactivate yourname```
 
-## Installing ByteTrack
+## Installing ByteTrack - This has to happen for the repository to work!!
 
 In the ```agrobot-BUP-ST20``` directory clone the ByteTrack repository.
 
@@ -38,6 +38,7 @@ In the ```agrobot-BUP-ST20``` directory clone the ByteTrack repository.
 add to your python path.
 ```export PYTHONPATH=${PYTHONPATH}:$/yourpath/agrobot-BUP-ST20/ByteTrack```
 
+You do not need to install their requirements.txt in the virtual environment.
 But you do need to do the following
 
 ```cd ByteTrack```
@@ -62,7 +63,7 @@ to
 
 ## Running for ByteTrack and Our Tracker for MOT
 
-
+## Running the evaluation once txt files have been created
 
 ## The hyper-parameters and the repositories for the different state-of-the-art tracking techniques
 
@@ -83,4 +84,4 @@ to
 | OurTracker DRE-D | This repository | threshold=1.0, min tracks=10, keep running=2, radius=maximum, delta=maximum, beta=1.0 |
 | M2F-VIS | [here](https://github.com/facebookresearch/Mask2Former) | lr=5e-5, all others default |
 | VITA | [here](https://github.com/sukjunhwang/VITA) | lr=5e-5, all others default |
-| PAg-NeRF | [here](https://github.com/Agricultural-Robotics-Bonn/pagnerf) |  |
+| PAg-NeRF | [here](https://github.com/Agricultural-Robotics-Bonn/pagnerf) | Default values |
