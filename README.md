@@ -2,9 +2,17 @@
 
 Please cite the paper
 ```
-Weakly Labelled Spatial-Temporal Sweet Pepper Data: enabling higher quality detection, segmentation, and tracking.
-Esra Guclu, Michael Halstead, Simon Denman, and Chris McCool
-2025
+@Article{2025bupst20,
+  author   = {Guclu, Esra and Halstead, Michael and Denman, Simon and McCool, Chris},
+  title    = {Weakly Labelled Spatial-Temporal Sweet Pepper Data: enabling higher quality detection, segmentation, and tracking.},
+  journal  = {The International Journal of Robotics Research},
+  year     = {2025},
+  volume   = {},
+  pages    = {},
+  month    = {},
+  doi      = {10.1177/02783649251379093},
+  publisher= {SAGE Publications Sage UK: London, England}
+}
 ```
 
 # The BUP-ST20 dataset
