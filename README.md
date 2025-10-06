@@ -2,6 +2,10 @@
 
 Please cite the paper
 ```
+Guclu E, Halstead M, Denman S, McCool C. Weakly labelled spatial-temporal sweet pepper data:
+Enabling higher quality detection, segmentation, and tracking.
+The International Journal of Robotics Research. 2025. https://doi.org/10.1177/02783649251379093
+
 @Article{2025bupst20,
   author   = {Guclu, Esra and Halstead, Michael and Denman, Simon and McCool, Chris},
   title    = {Weakly Labelled Spatial-Temporal Sweet Pepper Data: enabling higher quality detection, segmentation, and tracking.},
@@ -17,7 +21,31 @@ Please cite the paper
 
 # The BUP-ST20 dataset
 
-ESRA to complete.
+This repository is associated with the BUP-ST20 dataset, presented in our IJRR paper (https://doi.org/10.1177/02783649251379093)
+
+BUP-ST20 is a sweet pepper dataset collected in a glasshouse environment using a robotic platform for automated crop monitoring.
+The dataset provides semantic and instance-level annotations for spatial-temporal tasks such as video instance segmentation, and multi object tracking.
+
+BUP-ST20 is publicly available on bonndata:  
+🔗 https://doi.org/10.60507/FK2/NUMVO1
+
+It contains:
+```
+	•	16,240 RGB-Depth image pairs across 275 sequences
+	•	Weakly labelled train/validation set (bounding boxes, segmentation masks, semantic label, and consistent IDs)
+	•	Hand-labelled ground truth for evaluation set
+	•	Per-frame wheel odometry in CSV format
+	•	Camera intrinsics and extrinsics in YAML format
+	•	Train/val/eval splits configuration file
+```
+
+For documentation on dataset structure and usage, please refer to the following files included in the dataset package on bonndata (they are not part of this GitHub repository):
+```
+	•	dataset_structure.md: explains folder organization, file formats, and data modalities
+	•	how_to_use_bupst20.md: explains how to access and process the data
+```
+
+We kindly ask that you cite both the paper and the dataset if you use BUP-ST20 in your research (see citation section above).
 
 # The tracking and evaluation code.
 
